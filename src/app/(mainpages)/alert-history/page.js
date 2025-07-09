@@ -10,95 +10,95 @@ const Page = () => {
     const [selectedUser, setSelectedUser] = useState(null);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-   
+
 
     const columns = [
         { header: "Alert ID", accessorKey: "alertId", id: "alertId" },
-         { 
-        header: "Store", 
-        accessorKey: "store", 
-        id: "store",
-        cell: ({ row }) => (
-            <div className="flex items-center gap-2">
-                <Icon icon="weui:location-outlined" width="16" height="16" className="text-white/50" />
-                <span>{row.original.store}</span>
-            </div>
-        )
-    },
-         { 
-        header: "Detection", 
-        accessorKey: "detection", 
-        id: "detection",
-        cell: ({ row }) => (
-            <div className="flex items-center gap-3">
-                <div className="w-[35px] h-[35px] rounded-[5px] overflow-hidden">
-                    <Image 
-                    src="/images/livelady.svg"
-                        height={35}
-                        width={35}
-                        className="w-full h-full object-cover"
-                    />
+        {
+            header: "Store",
+            accessorKey: "store",
+            id: "store",
+            cell: ({ row }) => (
+                <div className="flex items-center gap-2">
+                    <Icon icon="weui:location-outlined" width="16" height="16" className="text-white/50" />
+                    <span>{row.original.store}</span>
                 </div>
-                <span>{row.original.detection}</span>
-            </div>
-        )
-    },
+            )
+        },
+        {
+            header: "Detection",
+            accessorKey: "detection",
+            id: "detection",
+            cell: ({ row }) => (
+                <div className="flex items-center gap-3">
+                    <div className="w-[35px] h-[35px] rounded-[5px] overflow-hidden">
+                        <Image
+                            src="/images/livelady.svg"
+                            height={35}
+                            width={35}
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                    <span>{row.original.detection}</span>
+                </div>
+            )
+        },
         { header: "Confidence", accessorKey: "confidence", id: "confidence" },
         { header: "Timestamp", accessorKey: "timestamp", id: "timestamp" },
-       { 
-        header: "Verdict", 
-        accessorKey: "verdict", 
-        id: "verdict",
-        cell: ({ row }) => {
-            const verdict = row.original.verdict;
-            const isTheft = /theft/i.test(verdict);
-            const isFalsePositive = /false positive/i.test(verdict);
-            
-            if (isTheft) {
+        {
+            header: "Verdict",
+            accessorKey: "verdict",
+            id: "verdict",
+            cell: ({ row }) => {
+                const verdict = row.original.verdict;
+                const isTheft = /theft/i.test(verdict);
+                const isFalsePositive = /false positive/i.test(verdict);
+
+                if (isTheft) {
+                    return (
+                        <div className="inline-flex h-[33px] px-3 py-2 items-center gap-2 rounded-[20px] bg-[rgba(255,71,104,0.16)]">
+                            <Icon icon="material-symbols-light:warning-outline-rounded" className="text-[#FF4768] text-lg" />
+                            <span className="text-xs text-[#FF4768]">{verdict}</span>
+                        </div>
+                    );
+                } else if (isFalsePositive) {
+                    return (
+                        <div className="inline-flex h-[33px] px-3 py-2 items-center gap-2 rounded-[20px] bg-[#46CF68]/20">
+                            <Icon icon="mdi:close-circle" className="text-[#46CF68] text-lg" />
+                            <span className="text-xs text-[#46CF68]">{verdict}</span>
+                        </div>
+                    );
+                }
                 return (
-                    <div className="inline-flex h-[33px] px-3 py-2 items-center gap-2 rounded-[20px] bg-[rgba(255,71,104,0.16)]">
-                        <Icon icon="material-symbols-light:warning-outline-rounded" className="text-[#FF4768] text-lg" />
-                        <span className="text-xs text-[#FF4768]">{verdict}</span>
-                    </div>
-                );
-            } else if (isFalsePositive) {
-                return (
-                    <div className="inline-flex h-[33px] px-3 py-2 items-center gap-2 rounded-[20px] bg-[#46CF68]/20">
-                        <Icon icon="mdi:close-circle" className="text-[#46CF68] text-lg" />
-                        <span className="text-xs text-[#46CF68]">{verdict}</span>
+                    <div className="inline-flex h-[33px] px-3 py-2 items-center gap-2 rounded-[20px] bg-white/10">
+                        <span className="text-sm font-medium">{verdict}</span>
                     </div>
                 );
             }
-            return (
-                <div className="inline-flex h-[33px] px-3 py-2 items-center gap-2 rounded-[20px] bg-white/10">
-                    <span className="text-sm font-medium">{verdict}</span>
-                </div>
-            );
-        }
-    },
+        },
         { header: "Reviewer", accessorKey: "reviewer", id: "reviewer" },
         { header: "Review Time", accessorKey: "reviewTime", id: "reviewTime" },
 
         {
-    header: "Action",
-    accessorKey: "action",
-    id: "action",
-    cell: ({ row }) => (
-        <div
-            className="cursor-pointer flex items-center gap-1 text-[#B1ED00] hover:text-[#B1ED00]/80 transition-colors"
-            onClick={() => {
-                setSelectedUser(row.original);
-                setIsModalOpen(true);
-            }}
-        >
-            <Icon icon="mdi:eye-outline" className="text-lg" />
-            <span className="underline">View</span>
-        </div>
-    ),
-}
+            header: "Action",
+            accessorKey: "action",
+            id: "action",
+            cell: ({ row }) => (
+                <div
+                    className="cursor-pointer flex items-center gap-1 text-[#B1ED00] hover:text-[#B1ED00]/80 transition-colors"
+                    onClick={() => {
+                        setSelectedUser(row.original);
+                        setIsModalOpen(true);
+                    }}
+                >
+                    <Icon icon="mdi:eye-outline" className="text-lg" />
+                    <span className="underline">View</span>
+                </div>
+            ),
+        }
     ];
 
-   const data = [
+    const data = [
         {
             alertId: "AL-2023-0582",
             store: "NY Downtown",
@@ -172,12 +172,12 @@ const Page = () => {
     ];
     return (
         <>
-            <div className='container md:space-y-7.5 space-y-3.5 mt-[37px] pb-2 px-3'>
+            <div className='container md:space-y-7.5 space-y-3.5 md:mt-[37px] pb-2 px-3'>
                 <div className='md:mt-8 py-[7px]'>
 
                     <p className="md:text-[20px]   font-semibold text-white pb-2.5 ">Incident Archive</p>
                     <p className="pb-3.5 text-white text-sm font-medium ">
-                       150 reviewed incidents found
+                        150 reviewed incidents found
                     </p>
                 </div>
 
@@ -185,7 +185,7 @@ const Page = () => {
                     <AlertFilter />
                 </div>
                 <div>
-                    <DataTable columns={columns} data={data} highlightHeader="true"/>
+                    <DataTable columns={columns} data={data} highlightHeader="true" />
                 </div>
             </div>
             {isModalOpen && (

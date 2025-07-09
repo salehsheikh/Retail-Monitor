@@ -6,7 +6,7 @@ import DeleteConfirmation from "../modals/DeleteConfirmation";
 import { useRouter } from "next/navigation";
 
 const NotificationPref = () => {
-  const router=useRouter();
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSave = () => {
@@ -47,7 +47,7 @@ const NotificationPref = () => {
           <h2 className="text-sm font-medium">Notification Preferences</h2>
         </div>
 
-       
+
 
         {/* First Two Alerts */}
         <div className="space-y-[11px]">
@@ -67,7 +67,7 @@ const NotificationPref = () => {
               />
             </button>
           </div>
-           <div className="w-full h-[1px] bg-white/20 " />
+          <div className="w-full h-[1px] bg-white/20 " />
 
           <div className="flex justify-between items-center  ">
             <div className="flex-col space-y-[5px]">
@@ -85,7 +85,7 @@ const NotificationPref = () => {
               />
             </button>
           </div>
-           <div className="w-full h-[1px] bg-white/20 " />
+          <div className="w-full h-[1px] bg-white/20 " />
           <div className="flex justify-between items-center  ">
             <div className="flex-col space-y-[5px]">
               <p className="text-xs font-medium">Daily Digest</p>
@@ -102,7 +102,7 @@ const NotificationPref = () => {
               />
             </button>
           </div>
-           <div className="w-full h-[1px] bg-white/20 " />
+          <div className="w-full h-[1px] bg-white/20 " />
 
           <div className="flex justify-between items-center  ">
             <div className="flex-col space-y-[5px]">
@@ -120,7 +120,7 @@ const NotificationPref = () => {
               />
             </button>
           </div>
-           <div className="w-full h-[1px] bg-white/20 " />
+          <div className="w-full h-[1px] bg-white/20 " />
 
           <div className="flex justify-between items-center  ">
             <div className="flex-col space-y-[5px]">
@@ -138,9 +138,9 @@ const NotificationPref = () => {
               />
             </button>
           </div>
-          
+
         </div>
-      
+
       </div>
       {isModalOpen && (
         <DeleteConfirmation
@@ -150,13 +150,13 @@ const NotificationPref = () => {
 
         />
       )}
-        <div className="mt-5 flex justify-between">
-          <button className="border border-[#B1ED00] cursor-pointer rounded-[10px] px-[74px] py-3.5 text-[#B1ED00] text-base "
-          onClick={()=>router.push('/login')}>Logout</button>
-                    <button className=" bg-[#B1ED00] 
-                    cursor-pointer rounded-[10px] px-[74px] py-3.5 text-black text-base ">Save Changes</button>
+      <div className="mt-5 flex-col sm:flex sm:flex-row space-y-2 justify-between">
+        <button className="border w-full sm:w-fit border-[#B1ED00] cursor-pointer rounded-[10px] px-[74px] py-3.5 text-[#B1ED00] text-base "
+          onClick={() => router.push('/login')}>Logout</button>
+        <button className=" bg-[#B1ED00] 
+                    cursor-pointer rounded-[10px] w-full sm:w-fit px-[74px] py-3.5 text-black text-base ">Save Changes</button>
 
-        </div>
+      </div>
     </>
   );
 };

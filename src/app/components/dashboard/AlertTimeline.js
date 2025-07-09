@@ -1,6 +1,7 @@
+"use client"
 import { Icon } from '@iconify/react';
-import React from 'react';
-
+import React, { useState } from 'react';
+import AlerTime from '../modals/AlertTime';
 const alerts = [
   {
     title: 'Shoplifting',
@@ -46,7 +47,7 @@ const alerts = [
   },
 ];
 
-const AlertItem = ({ title, icon, color, time, camera }) => (
+const AlertItem = ({ title, icon, color, time, camera, onClick }) => (
   <>
 
     <div className="flex justify-between items-center">
@@ -64,7 +65,9 @@ const AlertItem = ({ title, icon, color, time, camera }) => (
 
       <div className="w-[9px] h-[23px] rounded-[10px]" style={{ background: color }} />
 
-      <button className="text-base cursor-pointer text-white font-medium px-10 py-2.5 rounded-[10px] bg-[#B1EC0080]">
+      <button
+        onClick={onClick}
+        className="text-base cursor-pointer text-white font-medium px-10 py-2.5 rounded-[10px] bg-[#B1EC0080]">
         View Details
       </button>
     </div>
@@ -73,15 +76,21 @@ const AlertItem = ({ title, icon, color, time, camera }) => (
 );
 
 const AlertTimeline = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <p className='pb-[17px] text-xl font-semibold text-white'>Alert Timeline</p>
-    <div className="bg-[color:var(--color-darkest)] px-7.5 py-4.5 rounded-[20px] space-y-[13px] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.25)]">
-      {alerts.map((alert, index) => (
-        <AlertItem key={index} {...alert} />
-      ))}
-    </div>
+      <p className="pb-[17px] text-xl font-semibold text-white">Alert Timeline</p>
+
+      <div className="overflow-x-auto">
+        <div className="min-w-[510px] bg-[color:var(--color-darkest)] px-7.5 py-4.5 rounded-[20px] space-y-[13px] shadow-[0px_0px_3px_0px_rgba(0,0,0,0.25)]">
+          {alerts.map((alert, index) => (
+            <AlertItem key={index} {...alert} onClick={() => setShowModal(true)} />
+          ))}
+        </div>
+      </div>
+      {showModal && <AlerTime onClose={() => setShowModal(false)} />}
     </>
+
   );
 };
 

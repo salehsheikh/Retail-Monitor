@@ -50,7 +50,7 @@ const AlertFilter = () => {
                     </div>
                 </div>
                 <div>
-                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[45px]'>
+                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-[45px]'>
                         <Dropdown
                             label="All Verdicts"
                             options={["Review", "Unreviewed", "Pending"]}
@@ -66,9 +66,9 @@ const AlertFilter = () => {
                             options={["Admin", "User", "Staff"]}
                             onSelect={handleChange}
                         />
-                        
-                        <div className="relative"ref={datePickerRef}>
-                            <div 
+
+                        <div className="relative" ref={datePickerRef}>
+                            <div
                                 className="flex items-center gap-2 text-white text-sm font-medium h-[40px] px-3 border border-white/22 rounded-[15px] cursor-pointer"
                                 onClick={() => setShowDatePicker(!showDatePicker)}
                             >
@@ -77,9 +77,10 @@ const AlertFilter = () => {
                                     {selectedDate ? format(selectedDate, 'MMM dd, yyyy') : 'Select Date'}
                                 </p>
                             </div>
-                            
+
                             {showDatePicker && (
-                                <div className="absolute z-10 mt-1 bg-[color:var(--color-darkest)] border border-white/20 rounded-[15px] p-2 shadow-lg">
+                                <div className="absolute -left-40 md:left-0 lg:-left-12 z-10 mt-1 bg-[color:var(--color-darkest)] border border-white/20 rounded-[15px] p-2 shadow-lg 
+                  w-[90vw] max-w-[320px] sm:max-w-[360px] md:max-w-[400px]">
                                     <DayPicker
                                         mode="single"
                                         selected={selectedDate}
@@ -87,14 +88,15 @@ const AlertFilter = () => {
                                         styles={{
                                             caption: { color: 'white' },
                                             day: { color: 'white' },
-                                            head_cell: { color: 'white' }
+                                            head_cell: { color: 'white' },
                                         }}
                                         className="text-white bg-[color:var(--color-darkest)]"
                                     />
                                 </div>
                             )}
+
                         </div>
-                        
+
                         <Dropdown
                             label="Sort By"
                             options={["Newest First", "High Confidence", "Low Confidence"]}

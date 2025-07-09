@@ -15,7 +15,7 @@ const tabs = [
   { key: "assignedStores", label: "Assigned Stores", icon: "weui:location-outlined" },
   { key: "profile", label: "Profile", icon: "mdi:account-outline" },
   { key: "security", label: "Security", icon: "material-symbols-light:shield-lock-outline" },
-];      
+];
 
 const Page = () => {
   const [activeTab, setActiveTab] = useState("notification");
@@ -38,26 +38,25 @@ const Page = () => {
   };
 
   return (
-    <div className="container px-3 mt-[37px] pb-10">
+    <div className="container px-3 md:mt-[37px] pb-10">
       {/* Header */}
       <div className="py-2.5 md:mt-8">
-        <p className="text-[20px] font-semibold text-white pb-2.5">Profile and Settings</p>
+        <p className="md:text-[20px] font-semibold text-white pb-2.5">Profile and Settings</p>
         <p className="text-sm text-white font-medium">
           Manage your store information and preferences
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row gap-6 mt-6">
+      <div className="flex flex-col md:flex-row gap-6 mt-6">
         {/* Sidebar */}
-        <div className="lg:w-[325px] h-[298px] w-full bg-[color:var(--color-darkest)] rounded-[20px] p-4 space-y-3 shrink-0">
+        <div className="lg:w-[325px] md:w-[200px] h-[298px] w-full bg-[color:var(--color-darkest)] rounded-[20px] p-4 space-y-3 shrink-0">
           {tabs.map((tab) => (
             <div
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className={`flex items-center gap-3 px-4 py-2 cursor-pointer rounded-[12px] transition-all
-                ${
-                  activeTab === tab.key
-                    ? "bg-[#B1ED00] text-black font-medium "
-                    : "text-white hover:bg-white/10"
+                ${activeTab === tab.key
+                  ? "bg-[#B1ED00] text-black font-medium "
+                  : "text-white hover:bg-white/10"
                 }`}
             >
               <Icon icon={tab.icon} width={16} height={16} />
